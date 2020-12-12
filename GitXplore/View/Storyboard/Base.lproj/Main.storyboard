@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--GitXplore-->
+        <scene sceneID="wIF-ct-dwX">
+            <objects>
+                <tableViewController storyboardIdentifier="SearchRepositoryTableViewController" id="DXA-mN-9b6" customClass="SearchRepositoryTableViewController" customModule="GitXplore" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="boQ-Rz-dx5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchRepositoryTableViewCell" rowHeight="143" id="e06-WN-86o" customClass="SearchRepositoryTableViewCell" customModule="GitXplore" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="143"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e06-WN-86o" id="wyT-Dv-MSS">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pesquisar" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tlL-zE-a2k" customClass="TextField" customModule="GitXplore" customModuleProvider="target">
+                                            <rect key="frame" x="24" y="12" width="366" height="51"/>
+                                            <color key="backgroundColor" name="Secondary"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="55" id="ely-r3-jS4"/>
+                                            </constraints>
+                                            <color key="textColor" name="FontPrimary"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Imm-wt-Qyf">
+                                            <rect key="frame" x="30" y="87" width="354" height="44"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="YOK-4c-As2"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                            <state key="normal" title="Buscar">
+                                                <color key="titleColor" name="Primary"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" name="Primary"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Imm-wt-Qyf" firstAttribute="leading" secondItem="wyT-Dv-MSS" secondAttribute="leading" constant="30" id="6ba-YN-bxR"/>
+                                        <constraint firstItem="tlL-zE-a2k" firstAttribute="leading" secondItem="wyT-Dv-MSS" secondAttribute="leading" constant="24" id="GhA-XP-MOW"/>
+                                        <constraint firstAttribute="trailing" secondItem="Imm-wt-Qyf" secondAttribute="trailing" constant="30" id="Oqk-26-XoA"/>
+                                        <constraint firstItem="Imm-wt-Qyf" firstAttribute="top" secondItem="tlL-zE-a2k" secondAttribute="bottom" constant="24" id="P0f-s8-mHJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="tlL-zE-a2k" secondAttribute="trailing" constant="24" id="jJ2-zH-nAY"/>
+                                        <constraint firstAttribute="bottom" secondItem="Imm-wt-Qyf" secondAttribute="bottom" constant="12" id="nIN-gf-Mu5"/>
+                                        <constraint firstItem="tlL-zE-a2k" firstAttribute="top" secondItem="wyT-Dv-MSS" secondAttribute="top" constant="12" id="wKo-jF-PQx"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="searchButton" destination="Imm-wt-Qyf" id="d7u-c5-B8n"/>
+                                    <outlet property="searchTextField" destination="tlL-zE-a2k" id="D1Y-fO-Bl7"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentSearchTableViewCell" rowHeight="66" id="Bhn-ib-dCq" customClass="RecentSearchTableViewCell" customModule="GitXplore" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="171" width="414" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bhn-ib-dCq" id="Cv1-ZA-Xzf">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repositório" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MvM-BU-Lhn">
+                                            <rect key="frame" x="24" y="12" width="366" height="42"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" name="FontPrimary"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="MvM-BU-Lhn" firstAttribute="top" secondItem="Cv1-ZA-Xzf" secondAttribute="top" constant="12" id="SX4-yi-Iip"/>
+                                        <constraint firstAttribute="bottom" secondItem="MvM-BU-Lhn" secondAttribute="bottom" constant="12" id="XW1-vW-KYa"/>
+                                        <constraint firstAttribute="trailing" secondItem="MvM-BU-Lhn" secondAttribute="trailing" constant="24" id="YhZ-Gd-TiJ"/>
+                                        <constraint firstItem="MvM-BU-Lhn" firstAttribute="leading" secondItem="Cv1-ZA-Xzf" secondAttribute="leading" constant="24" id="rce-YJ-3np"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="DXA-mN-9b6" id="b0t-os-PjL"/>
+                            <outlet property="delegate" destination="DXA-mN-9b6" id="Bmj-ul-aT4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="GitXplore" id="o3n-ev-njj"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5kl-ig-KRN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="971.01449275362324" y="98.4375"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Tou-Tt-rwX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uW0-Zb-XeG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Eq0-jv-766">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="Primary"/>
+                        <color key="tintColor" name="Primary"/>
+                        <color key="barTintColor" name="Primary"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DXA-mN-9b6" kind="relationship" relationship="rootViewController" id="Dm1-5N-ij3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S5M-Rp-3o7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="60.869565217391312" y="98.4375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="FontPrimary">
+            <color red="0.27058823529411763" green="0.35294117647058826" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary">
+            <color red="0.0" green="0.58823529411764708" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Secondary">
+            <color red="0.8784313725490196" green="0.94901960784313721" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
