@@ -11,14 +11,15 @@ import RxSwift
 
 protocol SearchRepositoryDisplay: AnyObject {
     func onErrorSearchRepository(title: String, message: String)
+    func didSuccessSearchRepository()
 }
 
 final class SearchRepositoryTableViewController: UITableViewController, ReusableView {
 
-    private var viewModel: SearchRepositoryViewModeling
+    private var interactor: SearchRepositoryInteracting
 
-    init(viewModel: SearchRepositoryViewModeling) {
-        self.viewModel = viewModel
+    init(interactor: SearchRepositoryInteracting) {
+        self.interactor = interactor
         super.init(style: .plain)
     }
 
@@ -66,13 +67,18 @@ final class SearchRepositoryTableViewController: UITableViewController, Reusable
     }
 
     @objc func onPressSearchButton() {
+        // TODO: Implement start loading
         if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SearchRepositoryTableViewCell {
-            viewModel.searchRepository(query: cell.searchTextField.text)
+            interactor.searchRepository(query: cell.searchTextField.text)
         }
     }
 }
 
 extension SearchRepositoryTableViewController: SearchRepositoryDisplay {
+    func didSuccessSearchRepository() {
+        // TODO: Implement stop loading
+    }
+
     func onErrorSearchRepository(title: String, message: String) {
         showAlert(title: title, message: message)
     }

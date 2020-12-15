@@ -6,23 +6,41 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol SearchRepositoryInteracting {
-
+    func searchRepository(query: String?)
 }
 
 final class SearchRepositoryInteractor {
-    private var service: RepositoryServicing
+    private let service: RepositoryServicing
+    private let presenter: SearchRepositoryPresenting
+    private var repository: Repository?
+    private var disposeBag: DisposeBag = DisposeBag()
 
-    init(service: RepositoryServicing) {
+    init(service: RepositoryServicing, presenter: SearchRepositoryPresenting) {
         self.service = service
+        self.presenter = presenter
     }
 }
 
 extension SearchRepositoryInteractor:SearchRepositoryInteracting {
-    func searchRepository(query: String) {
-        service.searchRepository(query: query).map { (response) -> String in
-            response.
+    func searchRepository(query: String?) {
+
+        guard let query = query,
+              !query.isEmpty else {
+            presenter.onErrorSearchRepository(title: "Alerta", message: "Informe um nome para realizar a pesquisa")
+            return
         }
+
+        service.searchRepository(query: query)
+            .map({ $0.toDomain() })
+            .subscribe { (repository) in
+                self.repository = repository
+                self.presenter.list(repository: repository)
+            } onError: { (error) in
+                self.presenter.onErrorSearchRepository(title: "Ocorreu um erro", message: error.localizedDescription)
+            }
+            .disposed(by: disposeBag)
     }
 }

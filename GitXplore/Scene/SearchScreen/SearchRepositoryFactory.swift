@@ -9,11 +9,14 @@ import UIKit
 
 struct SearchRepostoryFactory {
     func make() -> UINavigationController {
+        let router = SearchRepositoryRouter()
         let service = RepositoryService()
-        let viewModel = SearchRepositoryViewModel(service: service)
-        let viewController = SearchRepositoryTableViewController(viewModel: viewModel)
+        let presenter = SearchRepositoryPresenter(router: router)
+        let interactor = SearchRepositoryInteractor(service: service, presenter: presenter)
+        let viewController = SearchRepositoryTableViewController(interactor: interactor)
 
-        viewModel.viewController = viewController
+        presenter.viewController = viewController
+        router.viewController = viewController
 
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.barTintColor = UIColor(named: "Primary")
