@@ -15,10 +15,27 @@ protocol SearchRepositoryDisplay: AnyObject {
 
 final class SearchRepositoryTableViewController: UITableViewController, ReusableView {
 
-    var viewModel: SearchRepositoryViewModeling?
+    private var viewModel: SearchRepositoryViewModeling
+
+    init(viewModel: SearchRepositoryViewModeling) {
+        self.viewModel = viewModel
+        super.init(style: .plain)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+        title = "GitXplore"
+    }
+
+    func setupTableView() {
+        tableView.register(nibWithCellClass: SearchRepositoryTableViewCell.self)
+        tableView.register(nibWithCellClass: RecentSearchTableViewCell.self)
+        tableView.separatorStyle = .none
     }
 
     // MARK: - Table view data source
@@ -49,8 +66,8 @@ final class SearchRepositoryTableViewController: UITableViewController, Reusable
     }
 
     @objc func onPressSearchButton() {
-        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? SearchRepositoryTableViewCell {
-            viewModel?.searchRepository(query: cell.searchTextField.text)
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SearchRepositoryTableViewCell {
+            viewModel.searchRepository(query: cell.searchTextField.text)
         }
     }
 }
