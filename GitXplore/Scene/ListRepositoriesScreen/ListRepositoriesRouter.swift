@@ -11,7 +11,7 @@ protocol ListRepositoriesRouting {
 
 }
 
-class ListRepositoriesRouter {
+final class ListRepositoriesRouter {
     weak var viewController: UIViewController?
 }
 

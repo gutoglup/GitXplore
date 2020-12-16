@@ -22,6 +22,7 @@ struct SearchRepostoryFactory {
         navigationController.navigationBar.barTintColor = UIColor(named: "Primary")
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         navigationController.navigationBar.isTranslucent = false
+        navigationController.navigationBar.tintColor = .white
 
         return navigationController
     }

@@ -37,7 +37,7 @@ extension SearchRepositoryInteractor:SearchRepositoryInteracting {
             .map({ $0.toDomain() })
             .subscribe { (repository) in
                 self.repository = repository
-                self.presenter.list(repository: repository)
+                self.presenter.list(repository: repository, term: query)
             } onError: { (error) in
                 self.presenter.onErrorSearchRepository(title: "Ocorreu um erro", message: error.localizedDescription)
             }

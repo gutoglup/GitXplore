@@ -8,14 +8,15 @@
 import UIKit
 
 struct ListRepositoriesFactory {
-    func make() -> UITableViewController {
+    func make(repository: Repository, term: String) -> UITableViewController {
         let router = ListRepositoriesRouter()
         let presenter = ListRepositoriesPresenter(router: router)
-        let interactor = ListRepositoriesInteractor(presenter: presenter)
+        let interactor = ListRepositoriesInteractor(presenter: presenter, repository: repository)
         let viewController = ListRepositoriesTableViewController(interactor: interactor)
 
         presenter.viewController = viewController
         router.viewController = viewController
+        viewController.title = term
 
         return viewController
     }

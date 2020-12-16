@@ -58,6 +58,7 @@ final class SearchRepositoryTableViewController: UITableViewController, Reusable
         case 0:
             let cell = tableView.dequeueReusableCell(withClass: SearchRepositoryTableViewCell.self, for: indexPath)
             cell.searchButton.addTarget(self, action: #selector(onPressSearchButton), for: .touchUpInside)
+
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withClass: RecentSearchTableViewCell.self, for: indexPath)

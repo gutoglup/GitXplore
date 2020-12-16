@@ -9,6 +9,7 @@ target 'GitXplore' do
   pod 'SwifterSwift'
   pod 'Moya/RxSwift'
   pod 'RxSwift'
+  pod 'Kingfisher'
 
   target 'GitXploreTests' do
     inherit! :search_paths

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SearchRepositoryRouting {
-
+    func routeDetail(with repository: Repository, term: String)
 }
 
 class SearchRepositoryRouter {
@@ -16,7 +16,8 @@ class SearchRepositoryRouter {
 }
 
 extension SearchRepositoryRouter: SearchRepositoryRouting {
-    func routeDetail(with repository: Repository) {
-//        let
+    func routeDetail(with repository: Repository, term: String) {
+        let listRepositoriesViewController = ListRepositoriesFactory().make(repository: repository, term: term)
+        viewController?.navigationController?.pushViewController(listRepositoriesViewController)
     }
 }

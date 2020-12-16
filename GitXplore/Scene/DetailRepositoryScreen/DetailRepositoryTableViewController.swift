@@ -8,10 +8,16 @@
 import UIKit
 
 protocol DetailRepositoryDisplay: AnyObject {
-
+    func display(itemsDisplay: [ItemDescriptionDisplay])
 }
 
 final class DetailRepositoryTableViewController: UITableViewController {
+
+    private var itemsDisplay: [ItemDescriptionDisplay] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     let presenter: DetailRepositoryPresenting
 
@@ -30,29 +36,41 @@ final class DetailRepositoryTableViewController: UITableViewController {
     }
 
     private func setupTableView() {
-
+        tableView.register(nibWithCellClass: DetailRepositoryTableViewCell.self)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        switch section {
+        case 0: return 0
+        default: return 8
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        switch indexPath.section {
+        case 0:
+            return UITableViewCell()
+        case 1:
+            let cell = tableView.dequeueReusableCell(withClass: DetailRepositoryTableViewCell.self, for: indexPath)
 
-
-
-        return cell
+            let parameters = itemsDisplay[indexPath.row]
+            cell.configureCell(title: parameters?.title, description: parameters?.description)
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
 
 }
 
 extension DetailRepositoryTableViewController: DetailRepositoryDisplay {
-    
+    func display(itemsDisplay: [ItemDescriptionDisplay]) {
+        self.itemsDisplay = itemsDisplay
+    }
 }

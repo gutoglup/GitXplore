@@ -12,9 +12,20 @@ protocol DetailRepositoryInteracting {
 }
 
 final class DetailRepositoryInteractor {
+    private let presenter: DetailRepositoryPresenting
+    private let repositoryItem: Item
 
+    init(presenter: DetailRepositoryPresenting, repositoryItem: Item) {
+        self.presenter = presenter
+        self.repositoryItem = repositoryItem
+    }
 }
 
 extension DetailRepositoryInteractor: DetailRepositoryInteracting {
 
+    func presentDetail() {
+        let itemDetail = repositoryItem.toItemDetail()
+
+        presenter.present(detail: itemDetail)
+    }
 }

@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (5.2.1)
+  - Kingfisher (5.14.1):
+    - Kingfisher/Core (= 5.14.1)
+  - Kingfisher/Core (5.14.1)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
   - Moya/RxSwift (14.0.0):
@@ -33,6 +36,7 @@ PODS:
   - SwifterSwift/UIKit (5.2.0)
 
 DEPENDENCIES:
+  - Kingfisher
   - Moya/RxSwift
   - RxSwift
   - SwifterSwift
@@ -40,16 +44,18 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Kingfisher
     - Moya
     - RxSwift
     - SwifterSwift
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
+  Kingfisher: 8050bc6f7f68cbf3908bd04df7ccbac188f6d6d6
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SwifterSwift: 334181863c416882d97b7a60c05054d9e4d799e2
 
-PODFILE CHECKSUM: 6f7d262fbfafa90caf6a0439e0634c19f3447826
+PODFILE CHECKSUM: 571f9fb74a52a95f84d801f1927c49f572a33b1f
 
 COCOAPODS: 1.9.3

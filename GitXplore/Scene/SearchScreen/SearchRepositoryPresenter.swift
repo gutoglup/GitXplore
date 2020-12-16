@@ -11,7 +11,7 @@ import RxSwift
 protocol SearchRepositoryPresenting {
     func onErrorSearchRepository(title: String, message: String)
     func didSuccessSearchRepository()
-    func list(repository: Repository)
+    func list(repository: Repository, term: String)
 }
 
 final class SearchRepositoryPresenter {
@@ -25,8 +25,8 @@ final class SearchRepositoryPresenter {
 }
 
 extension SearchRepositoryPresenter: SearchRepositoryPresenting {
-    func list(repository: Repository) {
-
+    func list(repository: Repository, term: String) {
+        router.routeDetail(with: repository, term: term)
     }
 
     func onErrorSearchRepository(title: String, message: String) {

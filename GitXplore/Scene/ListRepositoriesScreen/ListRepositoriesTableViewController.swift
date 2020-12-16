@@ -8,12 +8,17 @@
 import UIKit
 
 protocol ListRepositoriesDisplay: AnyObject {
-
+    func display(items: [ItemDisplay])
 }
 
-class ListRepositoriesTableViewController: UITableViewController {
+final class ListRepositoriesTableViewController: UITableViewController {
 
     let interactor: ListRepositoriesInteracting
+    private var items: [ItemDisplay] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     init(interactor: ListRepositoriesInteracting) {
         self.interactor = interactor
@@ -26,28 +31,33 @@ class ListRepositoriesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        interactor.presentItems()
+        setupTableView()
+    }
+
+    func setupTableView() {
+        tableView.register(nibWithCellClass: ListRepositoryTableViewCell.self)
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withClass: ListRepositoryTableViewCell.self, for: indexPath)
 
-        // Configure the cell...
-
+        let parameters = items[indexPath.row]
+        cell.configureCell(parameters: parameters)
+        
         return cell
     }
 
 }
 
 extension ListRepositoriesTableViewController: ListRepositoriesDisplay {
-    
+    func display(items: [ItemDisplay]) {
+        self.items = items
+    }
 }

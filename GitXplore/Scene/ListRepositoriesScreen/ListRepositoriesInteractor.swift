@@ -8,17 +8,21 @@
 import Foundation
 
 protocol ListRepositoriesInteracting {
-
+    func presentItems()
 }
 
-class ListRepositoriesInteractor {
+final class ListRepositoriesInteractor {
     private let presenter: ListRepositoriesPresenting
+    private let repository: Repository
 
-    init(presenter: ListRepositoriesPresenting) {
+    init(presenter: ListRepositoriesPresenting, repository: Repository) {
         self.presenter = presenter
+        self.repository = repository
     }
 }
 
 extension ListRepositoriesInteractor: ListRepositoriesInteracting {
-
+    func presentItems() {
+        presenter.presentItems(repository: repository)
+    }
 }

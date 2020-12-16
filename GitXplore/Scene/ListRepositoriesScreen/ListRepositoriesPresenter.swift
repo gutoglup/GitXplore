@@ -8,10 +8,10 @@
 import Foundation
 
 protocol ListRepositoriesPresenting {
-
+    func presentItems(repository: Repository)
 }
 
-class ListRepositoriesPresenter {
+final class ListRepositoriesPresenter {
     weak var viewController: ListRepositoriesDisplay?
     private let router: ListRepositoriesRouting
 
@@ -21,5 +21,18 @@ class ListRepositoriesPresenter {
 }
 
 extension ListRepositoriesPresenter: ListRepositoriesPresenting {
+    func presentItems(repository: Repository) {
+        guard let items = repository.items?.compactMap({ (item) -> ItemDisplay in
+            ItemDisplay(
+                name: item.name,
+                updatedAt: item.updatedAt?.dayMonthYearHourMinute,
+                ownerLogin: item.owner?.login,
+                language: item.language,
+                avatarUrl: item.owner?.avatarUrl)
+        }) else {
+            return
+        }
 
+        viewController?.display(items: items)
+    }
 }

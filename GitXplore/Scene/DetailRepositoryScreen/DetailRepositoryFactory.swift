@@ -8,8 +8,8 @@
 import UIKit
 
 struct DetailRepositoryFactory {
-    func make() -> UITableViewController {
-        let interactor = DetailRepositoryInteractor()
+    func make(repositoryItem: Item) -> UITableViewController {
+        let interactor = DetailRepositoryInteractor(repositoryItem: repositoryItem)
         let presenter = DetailRepositoryPresenter(interactor: interactor)
         let viewController = DetailRepositoryTableViewController(presenter: presenter)
 
