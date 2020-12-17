@@ -12,6 +12,7 @@ protocol SearchRepositoryPresenting {
     func onErrorSearchRepository(title: String, message: String)
     func didSuccessSearchRepository()
     func list(repository: Repository, term: String)
+    func listRecentSearchs(items: [SearchItem])
 }
 
 final class SearchRepositoryPresenter {
@@ -35,5 +36,11 @@ extension SearchRepositoryPresenter: SearchRepositoryPresenting {
 
     func didSuccessSearchRepository() {
         viewController?.didSuccessSearchRepository()
+    }
+
+    func listRecentSearchs(items: [SearchItem]) {
+        let listRecentSearchs = items.sorted(by: \.date, with: {$0 > $1}).map { $0.title }
+        viewController?.listRecentSearchs(items: listRecentSearchs)
+
     }
 }

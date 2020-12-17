@@ -10,6 +10,10 @@
 		0814375F4C41DCF6E1AF2233 /* Pods_GitXploreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650F36FCC6DAEE7A611B65C5 /* Pods_GitXploreTests.framework */; };
 		4F3D6B0D258993AF0052EBB6 /* ItemDescriptionDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3D6B0C258993AF0052EBB6 /* ItemDescriptionDisplay.swift */; };
 		4F3D6B22258994920052EBB6 /* Item+Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3D6B21258994920052EBB6 /* Item+Mapper.swift */; };
+		4F3D6B28258AC6B30052EBB6 /* DetailRepositoryHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3D6B26258AC6B30052EBB6 /* DetailRepositoryHeaderTableViewCell.swift */; };
+		4F3D6B29258AC6B30052EBB6 /* DetailRepositoryHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F3D6B27258AC6B30052EBB6 /* DetailRepositoryHeaderTableViewCell.xib */; };
+		4F3D6B2F258ADABF0052EBB6 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3D6B2E258ADABF0052EBB6 /* SearchRepository.swift */; };
+		4F3D6B37258ADB700052EBB6 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3D6B36258ADB700052EBB6 /* SearchItem.swift */; };
 		4F430176258980A80026DA62 /* ItemDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F430175258980A80026DA62 /* ItemDisplay.swift */; };
 		4F43017B258981B70026DA62 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F43017A258981B70026DA62 /* Date+Extension.swift */; };
 		4F430181258982EF0026DA62 /* ListRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F43017F258982EF0026DA62 /* ListRepositoryTableViewCell.swift */; };
@@ -86,6 +90,10 @@
 		4D478A91F3361BDA735544F8 /* Pods-GitXploreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitXploreTests.debug.xcconfig"; path = "Target Support Files/Pods-GitXploreTests/Pods-GitXploreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F3D6B0C258993AF0052EBB6 /* ItemDescriptionDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDescriptionDisplay.swift; sourceTree = "<group>"; };
 		4F3D6B21258994920052EBB6 /* Item+Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+Mapper.swift"; sourceTree = "<group>"; };
+		4F3D6B26258AC6B30052EBB6 /* DetailRepositoryHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRepositoryHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		4F3D6B27258AC6B30052EBB6 /* DetailRepositoryHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailRepositoryHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		4F3D6B2E258ADABF0052EBB6 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
+		4F3D6B36258ADB700052EBB6 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
 		4F430175258980A80026DA62 /* ItemDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDisplay.swift; sourceTree = "<group>"; };
 		4F43017A258981B70026DA62 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		4F43017F258982EF0026DA62 /* ListRepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRepositoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -186,11 +194,21 @@
 			path = Display;
 			sourceTree = "<group>";
 		};
+		4F3D6B2D258ADA930052EBB6 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				4F3D6B2E258ADABF0052EBB6 /* SearchRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		4F43019925898F9E0026DA62 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				4F4301AA25898FD30026DA62 /* DetailRepositoryTableViewCell.swift */,
 				4F4301AB25898FD30026DA62 /* DetailRepositoryTableViewCell.xib */,
+				4F3D6B26258AC6B30052EBB6 /* DetailRepositoryHeaderTableViewCell.swift */,
+				4F3D6B27258AC6B30052EBB6 /* DetailRepositoryHeaderTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -224,6 +242,7 @@
 				4F8E6C022584FB100035AD95 /* Components */,
 				4F8E6BD32584F4830035AD95 /* Extension */,
 				4F8E6BCE2584F4660035AD95 /* Scene */,
+				4F3D6B2D258ADA930052EBB6 /* Repository */,
 				4F8E6BD22584F47F0035AD95 /* Service */,
 				4F8E6C0E2584FCBF0035AD95 /* Model */,
 				4F8E6BD82584F6790035AD95 /* Colors.xcassets */,
@@ -342,6 +361,7 @@
 				4FE1F70725884581004C569A /* License.swift */,
 				4FE1F70C258845AA004C569A /* Owner.swift */,
 				4F43019425898EBD0026DA62 /* ItemDetail.swift */,
+				4F3D6B36258ADB700052EBB6 /* SearchItem.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -548,6 +568,7 @@
 				4F70447E2586413900973695 /* RecentSearchTableViewCell.xib in Resources */,
 				4F4301AD25898FD30026DA62 /* DetailRepositoryTableViewCell.xib in Resources */,
 				4F7044792586411000973695 /* SearchRepositoryTableViewCell.xib in Resources */,
+				4F3D6B29258AC6B30052EBB6 /* DetailRepositoryHeaderTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +698,7 @@
 			files = (
 				4F70448C25864F9C00973695 /* SearchRepositoryPresenter.swift in Sources */,
 				4FE1F745258851B9004C569A /* DetailRepositoryPresenter.swift in Sources */,
+				4F3D6B28258AC6B30052EBB6 /* DetailRepositoryHeaderTableViewCell.swift in Sources */,
 				4FE1F76C2588576E004C569A /* ListRepositoriesFactory.swift in Sources */,
 				4FE1F7182588466F004C569A /* LicenseResponse+Mapper.swift in Sources */,
 				4F8B691E2586570A00FA67D7 /* ItemResponse.swift in Sources */,
@@ -709,9 +731,11 @@
 				4FE1F7552588566D004C569A /* ListRepositoriesTableViewController.swift in Sources */,
 				4F43019525898EBD0026DA62 /* ItemDetail.swift in Sources */,
 				4FE1F70D258845AA004C569A /* Owner.swift in Sources */,
+				4F3D6B2F258ADABF0052EBB6 /* SearchRepository.swift in Sources */,
 				4F8B691D2586570A00FA67D7 /* OwnerResponse.swift in Sources */,
 				4F3D6B0D258993AF0052EBB6 /* ItemDescriptionDisplay.swift in Sources */,
 				4FE1F6FB258844F4004C569A /* Repository.swift in Sources */,
+				4F3D6B37258ADB700052EBB6 /* SearchItem.swift in Sources */,
 				4F8B6911258653EA00FA67D7 /* SearchRepositoryInteractor.swift in Sources */,
 				4FE1F74A258851C2004C569A /* DetailRepositoryInteractor.swift in Sources */,
 				4F8E6C1A258503860035AD95 /* RepositoryService.swift in Sources */,

@@ -9,6 +9,7 @@ import Foundation
 
 protocol ListRepositoriesPresenting {
     func presentItems(repository: Repository)
+    func detail(item: Item)
 }
 
 final class ListRepositoriesPresenter {
@@ -34,5 +35,9 @@ extension ListRepositoriesPresenter: ListRepositoriesPresenting {
         }
 
         viewController?.display(items: items)
+    }
+
+    func detail(item: Item) {
+        router.showDetail(item: item)
     }
 }

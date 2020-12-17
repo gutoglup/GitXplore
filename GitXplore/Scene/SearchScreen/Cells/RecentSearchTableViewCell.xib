@@ -30,6 +30,9 @@
                     <constraint firstItem="0Eb-VZ-ACU" firstAttribute="top" secondItem="NcD-yU-mJt" secondAttribute="top" constant="12" id="eYn-Ia-mrF"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="titleLabel" destination="0Eb-VZ-ACU" id="zJy-B0-FDn"/>
+            </connections>
             <point key="canvasLocation" x="265" y="90"/>
         </tableViewCell>
     </objects>

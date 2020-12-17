@@ -12,11 +12,17 @@ import RxSwift
 protocol SearchRepositoryDisplay: AnyObject {
     func onErrorSearchRepository(title: String, message: String)
     func didSuccessSearchRepository()
+    func listRecentSearchs(items: [String])
 }
 
 final class SearchRepositoryTableViewController: UITableViewController, ReusableView {
 
     private var interactor: SearchRepositoryInteracting
+    var listRecentSearchs: [String] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     init(interactor: SearchRepositoryInteracting) {
         self.interactor = interactor
@@ -31,6 +37,11 @@ final class SearchRepositoryTableViewController: UITableViewController, Reusable
         super.viewDidLoad()
         setupTableView()
         title = "GitXplore"
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor.listRecentSearchs()
     }
 
     func setupTableView() {
@@ -48,10 +59,9 @@ final class SearchRepositoryTableViewController: UITableViewController, Reusable
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 1
-        default: return 0
+        default: return listRecentSearchs.count
         }
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
@@ -62,9 +72,15 @@ final class SearchRepositoryTableViewController: UITableViewController, Reusable
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withClass: RecentSearchTableViewCell.self, for: indexPath)
-
+            let title = listRecentSearchs[indexPath.row]
+            cell.configureCell(title: title)
             return cell
         }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        interactor.searchRepository(query: listRecentSearchs[indexPath.row])
     }
 
     @objc func onPressSearchButton() {
@@ -82,5 +98,9 @@ extension SearchRepositoryTableViewController: SearchRepositoryDisplay {
 
     func onErrorSearchRepository(title: String, message: String) {
         showAlert(title: title, message: message)
+    }
+
+    func listRecentSearchs(items: [String]) {
+        listRecentSearchs = items
     }
 }

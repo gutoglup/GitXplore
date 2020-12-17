@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DetailRepositoryInteracting {
-
+    func presentDetail()
 }
 
 final class DetailRepositoryInteractor {

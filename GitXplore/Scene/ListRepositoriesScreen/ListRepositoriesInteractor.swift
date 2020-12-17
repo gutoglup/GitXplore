@@ -9,6 +9,7 @@ import Foundation
 
 protocol ListRepositoriesInteracting {
     func presentItems()
+    func selectItem(at index: Int)
 }
 
 final class ListRepositoriesInteractor {
@@ -24,5 +25,10 @@ final class ListRepositoriesInteractor {
 extension ListRepositoriesInteractor: ListRepositoriesInteracting {
     func presentItems() {
         presenter.presentItems(repository: repository)
+    }
+
+    func selectItem(at index: Int) {
+        guard let item = repository.items?[index] else { return }
+        presenter.detail(item: item)
     }
 }

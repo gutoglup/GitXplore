@@ -9,9 +9,10 @@ import UIKit
 
 struct DetailRepositoryFactory {
     func make(repositoryItem: Item) -> UITableViewController {
-        let interactor = DetailRepositoryInteractor(repositoryItem: repositoryItem)
-        let presenter = DetailRepositoryPresenter(interactor: interactor)
-        let viewController = DetailRepositoryTableViewController(presenter: presenter)
+
+        let presenter = DetailRepositoryPresenter()
+        let interactor = DetailRepositoryInteractor(presenter: presenter, repositoryItem: repositoryItem)
+        let viewController = DetailRepositoryTableViewController(interactor: interactor)
 
         presenter.viewController = viewController
 

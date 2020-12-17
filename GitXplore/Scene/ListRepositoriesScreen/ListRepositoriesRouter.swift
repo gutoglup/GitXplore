@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ListRepositoriesRouting {
-
+    func showDetail(item: Item)
 }
 
 final class ListRepositoriesRouter {
@@ -17,4 +17,8 @@ final class ListRepositoriesRouter {
 
 extension ListRepositoriesRouter: ListRepositoriesRouting {
 
+    func showDetail(item: Item) {
+        let detailRepositoryViewController = DetailRepositoryFactory().make(repositoryItem: item)
+        viewController?.navigationController?.pushViewController(detailRepositoryViewController)
+    }
 }

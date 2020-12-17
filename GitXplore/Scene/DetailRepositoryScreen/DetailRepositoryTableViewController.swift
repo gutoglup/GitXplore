@@ -8,21 +8,26 @@
 import UIKit
 
 protocol DetailRepositoryDisplay: AnyObject {
-    func display(itemsDisplay: [ItemDescriptionDisplay])
+    func display(itemDisplay: ItemDisplay, itemsDescriptionDisplay: [ItemDescriptionDisplay])
 }
 
 final class DetailRepositoryTableViewController: UITableViewController {
 
-    private var itemsDisplay: [ItemDescriptionDisplay] = [] {
+    private var itemsDescriptionDisplay: [ItemDescriptionDisplay] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    private var itemDisplay: ItemDisplay? {
         didSet {
             tableView.reloadData()
         }
     }
 
-    let presenter: DetailRepositoryPresenting
+    let interactor: DetailRepositoryInteracting
 
-    init(presenter: DetailRepositoryPresenting) {
-        self.presenter = presenter
+    init(interactor: DetailRepositoryInteracting) {
+        self.interactor = interactor
         super.init(style: .plain)
     }
 
@@ -33,10 +38,13 @@ final class DetailRepositoryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        interactor.presentDetail()
     }
 
     private func setupTableView() {
         tableView.register(nibWithCellClass: DetailRepositoryTableViewCell.self)
+        tableView.register(nibWithCellClass: DetailRepositoryHeaderTableViewCell.self)
+        tableView.separatorStyle = .none
     }
 
     // MARK: - Table view data source
@@ -47,20 +55,22 @@ final class DetailRepositoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0: return 0
-        default: return 8
+        case 0: return 1
+        default: return itemsDescriptionDisplay.count
         }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withClass: DetailRepositoryHeaderTableViewCell.self, for: indexPath)
+            cell.configureCell(parameters: itemDisplay)
+            return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withClass: DetailRepositoryTableViewCell.self, for: indexPath)
 
-            let parameters = itemsDisplay[indexPath.row]
-            cell.configureCell(title: parameters?.title, description: parameters?.description)
+            let parameters = itemsDescriptionDisplay[indexPath.row]
+            cell.configureCell(title: parameters.title, description: parameters.description)
             return cell
         default:
             return UITableViewCell()
@@ -70,7 +80,8 @@ final class DetailRepositoryTableViewController: UITableViewController {
 }
 
 extension DetailRepositoryTableViewController: DetailRepositoryDisplay {
-    func display(itemsDisplay: [ItemDescriptionDisplay]) {
-        self.itemsDisplay = itemsDisplay
+    func display(itemDisplay: ItemDisplay, itemsDescriptionDisplay: [ItemDescriptionDisplay]) {
+        self.itemDisplay = itemDisplay
+        self.itemsDescriptionDisplay = itemsDescriptionDisplay
     }
 }

@@ -10,6 +10,7 @@ import RxSwift
 
 protocol SearchRepositoryInteracting {
     func searchRepository(query: String?)
+    func listRecentSearchs()
 }
 
 final class SearchRepositoryInteractor {
@@ -17,6 +18,9 @@ final class SearchRepositoryInteractor {
     private let presenter: SearchRepositoryPresenting
     private var repository: Repository?
     private var disposeBag: DisposeBag = DisposeBag()
+    private lazy var searchRepository: SearchRepositoring = {
+        return SearchRepository()
+    }()
 
     init(service: RepositoryServicing, presenter: SearchRepositoryPresenting) {
         self.service = service
@@ -25,13 +29,19 @@ final class SearchRepositoryInteractor {
 }
 
 extension SearchRepositoryInteractor:SearchRepositoryInteracting {
-    func searchRepository(query: String?) {
+    func listRecentSearchs() {
+        guard let searchItems = searchRepository.listItems() else { return }
+        presenter.listRecentSearchs(items: searchItems)
+    }
 
+    func searchRepository(query: String?) {
         guard let query = query,
               !query.isEmpty else {
             presenter.onErrorSearchRepository(title: "Alerta", message: "Informe um nome para realizar a pesquisa")
             return
         }
+
+        searchRepository.add(new: SearchItem(title: query, date: Date()))
 
         service.searchRepository(query: query)
             .map({ $0.toDomain() })
