@@ -40,9 +40,9 @@ private final class RepositoryServiceMock: RepositoryServicing {
     func searchRepository(query: String) -> PrimitiveSequence<SingleTrait, RepositoryResponse> {
         searchRepositoryCount += 1
 
-        let request = MoyaProvider<RepositoryProvider>(stubClosure: MoyaProvider<RepositoryProvider>.immediatelyStub).rx
+        let request = MoyaProvider<RepositoryProvider>(stubClosure: MoyaProvider<RepositoryProvider>.delayedStub(2)).rx
             .request(.searchRepository(term: "x"))
-            .filterSuccessfulStatusCodes()
+//            .filterSuccessfulStatusCodes()
             .map(RepositoryResponse.self)
 
         return request
@@ -99,6 +99,15 @@ final class SearchRepositoryInteractorTests: XCTestCase {
         interactor.searchRepository(query: "rx")
         XCTAssertEqual(searchRepository.searchItemByTitleCount, 1)
         XCTAssertEqual(presenter.listRepositoryCount, 1)
+    }
+
+    func testSearchRepository_withNormalRequest() {
+        let expetation = self.expectation(description: "request")
+        service.expetation = expetation
+        interactor.searchRepository(query: "rx")
+        self.waitForExpectations(timeout: 5.0, handler: nil)
+//        XCTAssertEqual(presenter.listRepositoryCount, 1)
+        XCTAssertEqual(service.searchRepositoryCount, 1)
     }
 
 }

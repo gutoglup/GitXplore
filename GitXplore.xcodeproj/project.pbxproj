@@ -42,10 +42,10 @@
 		4F8E6BE82584F7910035AD95 /* SearchRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E6BE72584F7910035AD95 /* SearchRepositoryTableViewCell.swift */; };
 		4F8E6BF02584F7AC0035AD95 /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E6BEF2584F7AC0035AD95 /* RecentSearchTableViewCell.swift */; };
 		4F8E6BF52584F7BE0035AD95 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E6BF42584F7BE0035AD95 /* ReusableView.swift */; };
-		4F8E6C042584FB1C0035AD95 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E6C032584FB1C0035AD95 /* TextField.swift */; };
-		4F8E6C122584FE400035AD95 /* RepositoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E6C112584FE400035AD95 /* RepositoryProvider.swift */; };
-		4F8E6C1A258503860035AD95 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E6C19258503860035AD95 /* RepositoryService.swift */; };
 		4F8E6C5A25851EE20035AD95 /* SearchRepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E6C5925851EE20035AD95 /* SearchRepositoryFactory.swift */; };
+		4F96DBE1258CEE050009AD07 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F96DBE0258CEE050009AD07 /* TextField.swift */; };
+		4F96DBE7258CEE190009AD07 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F96DBE5258CEE190009AD07 /* RepositoryService.swift */; };
+		4F96DBE8258CEE190009AD07 /* RepositoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F96DBE6258CEE190009AD07 /* RepositoryProvider.swift */; };
 		4FE1F6FB258844F4004C569A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1F6FA258844F4004C569A /* Repository.swift */; };
 		4FE1F70025884520004C569A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1F6FF25884520004C569A /* Item.swift */; };
 		4FE1F70825884581004C569A /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1F70725884581004C569A /* License.swift */; };
@@ -130,10 +130,10 @@
 		4F8E6BE72584F7910035AD95 /* SearchRepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		4F8E6BEF2584F7AC0035AD95 /* RecentSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewCell.swift; sourceTree = "<group>"; };
 		4F8E6BF42584F7BE0035AD95 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
-		4F8E6C032584FB1C0035AD95 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = ../../../../TextField.swift; sourceTree = "<group>"; };
-		4F8E6C112584FE400035AD95 /* RepositoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RepositoryProvider.swift; path = ../../../../RepositoryProvider.swift; sourceTree = "<group>"; };
-		4F8E6C19258503860035AD95 /* RepositoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RepositoryService.swift; path = ../../../../RepositoryService.swift; sourceTree = "<group>"; };
 		4F8E6C5925851EE20035AD95 /* SearchRepositoryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryFactory.swift; sourceTree = "<group>"; };
+		4F96DBE0258CEE050009AD07 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		4F96DBE5258CEE190009AD07 /* RepositoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryService.swift; sourceTree = "<group>"; };
+		4F96DBE6258CEE190009AD07 /* RepositoryProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryProvider.swift; sourceTree = "<group>"; };
 		4FE1F6FA258844F4004C569A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		4FE1F6FF25884520004C569A /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		4FE1F70725884581004C569A /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
@@ -291,8 +291,8 @@
 		4F8E6BD22584F47F0035AD95 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				4F8E6C112584FE400035AD95 /* RepositoryProvider.swift */,
-				4F8E6C19258503860035AD95 /* RepositoryService.swift */,
+				4F96DBE6258CEE190009AD07 /* RepositoryProvider.swift */,
+				4F96DBE5258CEE190009AD07 /* RepositoryService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -342,7 +342,7 @@
 		4F8E6C022584FB100035AD95 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				4F8E6C032584FB1C0035AD95 /* TextField.swift */,
+				4F96DBE0258CEE050009AD07 /* TextField.swift */,
 				4F1095DA258C286E00AAD23B /* LoadingView.swift */,
 			);
 			path = Components;
@@ -708,6 +708,7 @@
 				4FE1F76C2588576E004C569A /* ListRepositoriesFactory.swift in Sources */,
 				4FE1F7182588466F004C569A /* LicenseResponse+Mapper.swift in Sources */,
 				4F8B691E2586570A00FA67D7 /* ItemResponse.swift in Sources */,
+				4F96DBE7258CEE190009AD07 /* RepositoryService.swift in Sources */,
 				4F8B691F2586570A00FA67D7 /* RepositoryResponse.swift in Sources */,
 				4FE1F75A258856AA004C569A /* ListRepositoriesInteractor.swift in Sources */,
 				4FE1F76725885766004C569A /* ListRepositoriesRouter.swift in Sources */,
@@ -727,10 +728,11 @@
 				4F4301AC25898FD30026DA62 /* DetailRepositoryTableViewCell.swift in Sources */,
 				4FE1F722258847E2004C569A /* RepositoryResponse+Mapper.swift in Sources */,
 				4F8E6BF02584F7AC0035AD95 /* RecentSearchTableViewCell.swift in Sources */,
-				4F8E6C042584FB1C0035AD95 /* TextField.swift in Sources */,
+				4F96DBE1258CEE050009AD07 /* TextField.swift in Sources */,
 				4FE1F762258856DF004C569A /* ListRepositoriesPresenter.swift in Sources */,
 				4F8E6BE82584F7910035AD95 /* SearchRepositoryTableViewCell.swift in Sources */,
 				4F8E6B9C2584F4540035AD95 /* AppDelegate.swift in Sources */,
+				4F96DBE8258CEE190009AD07 /* RepositoryProvider.swift in Sources */,
 				4FE1F71D258846A7004C569A /* ItemResponse+Mapper.swift in Sources */,
 				4FE1F70025884520004C569A /* Item.swift in Sources */,
 				4F8E6BF52584F7BE0035AD95 /* ReusableView.swift in Sources */,
@@ -744,8 +746,6 @@
 				4F3D6B37258ADB700052EBB6 /* SearchItem.swift in Sources */,
 				4F8B6911258653EA00FA67D7 /* SearchRepositoryInteractor.swift in Sources */,
 				4FE1F74A258851C2004C569A /* DetailRepositoryInteractor.swift in Sources */,
-				4F8E6C1A258503860035AD95 /* RepositoryService.swift in Sources */,
-				4F8E6C122584FE400035AD95 /* RepositoryProvider.swift in Sources */,
 				4F8E6B9E2584F4540035AD95 /* SceneDelegate.swift in Sources */,
 				4F1095DB258C286E00AAD23B /* LoadingView.swift in Sources */,
 			);
