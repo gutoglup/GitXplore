@@ -12,7 +12,8 @@ struct SearchRepostoryFactory {
         let router = SearchRepositoryRouter()
         let service = RepositoryService()
         let presenter = SearchRepositoryPresenter(router: router)
-        let interactor = SearchRepositoryInteractor(service: service, presenter: presenter)
+        let searchRepository = SearchRepository()
+        let interactor = SearchRepositoryInteractor(service: service, presenter: presenter, searchRepository: searchRepository)
         let viewController = SearchRepositoryTableViewController(interactor: interactor)
 
         presenter.viewController = viewController

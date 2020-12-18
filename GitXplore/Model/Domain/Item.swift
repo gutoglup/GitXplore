@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Item {
+struct Item: Codable {
     
     let hooksUrl: String?
     let issueEventsUrl: String?

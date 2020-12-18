@@ -10,4 +10,5 @@ import Foundation
 struct SearchItem: Codable {
     let title: String
     let date: Date
+    let repository: Repository
 }

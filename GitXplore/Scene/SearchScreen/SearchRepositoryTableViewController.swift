@@ -15,7 +15,7 @@ protocol SearchRepositoryDisplay: AnyObject {
     func listRecentSearchs(items: [String])
 }
 
-final class SearchRepositoryTableViewController: UITableViewController, ReusableView {
+final class SearchRepositoryTableViewController: UITableViewController, ReusableView, LoadingViewble {
 
     private var interactor: SearchRepositoryInteracting
     var listRecentSearchs: [String] = [] {
@@ -68,7 +68,7 @@ final class SearchRepositoryTableViewController: UITableViewController, Reusable
         case 0:
             let cell = tableView.dequeueReusableCell(withClass: SearchRepositoryTableViewCell.self, for: indexPath)
             cell.searchButton.addTarget(self, action: #selector(onPressSearchButton), for: .touchUpInside)
-
+            cell.selectionStyle = .none
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withClass: RecentSearchTableViewCell.self, for: indexPath)
@@ -80,11 +80,14 @@ final class SearchRepositoryTableViewController: UITableViewController, Reusable
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        interactor.searchRepository(query: listRecentSearchs[indexPath.row])
+        if indexPath.section != 0 {
+            startLoading()
+            interactor.searchRepository(query: listRecentSearchs[indexPath.row])
+        }
     }
 
     @objc func onPressSearchButton() {
-        // TODO: Implement start loading
+        startLoading()
         if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SearchRepositoryTableViewCell {
             interactor.searchRepository(query: cell.searchTextField.text)
         }
@@ -93,10 +96,11 @@ final class SearchRepositoryTableViewController: UITableViewController, Reusable
 
 extension SearchRepositoryTableViewController: SearchRepositoryDisplay {
     func didSuccessSearchRepository() {
-        // TODO: Implement stop loading
+        stopLoading()
     }
 
     func onErrorSearchRepository(title: String, message: String) {
+        stopLoading()
         showAlert(title: title, message: message)
     }
 

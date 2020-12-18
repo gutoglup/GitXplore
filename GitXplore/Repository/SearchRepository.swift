@@ -10,6 +10,7 @@ import Foundation
 protocol SearchRepositoring {
     func add(new searchItem: SearchItem)
     func listItems() -> [SearchItem]?
+    func searchItem(by title: String) -> SearchItem?
 }
 
 final class SearchRepository {
@@ -32,5 +33,9 @@ extension SearchRepository: SearchRepositoring {
         let decoder = JSONDecoder()
         guard let searchItems = try? decoder.decode([SearchItem].self, from: searchItemsData) else { return nil }
         return searchItems
+    }
+
+    func searchItem(by title: String) -> SearchItem? {
+        return listItems()?.first(where: {$0.title == title})
     }
 }

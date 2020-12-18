@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Owner {
+struct Owner: Codable {
     let followersUrl: String?
     let htmlUrl: String?
     let type: String?

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Repository {
+struct Repository: Codable {
     
     let items: [Item]?
     let incompleteResults: Bool?

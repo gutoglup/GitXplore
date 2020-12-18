@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct License {
+struct License: Codable {
     let url: String?
     let spdxId: String?
     let key: String?

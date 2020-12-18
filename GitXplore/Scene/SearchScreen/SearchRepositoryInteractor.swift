@@ -18,13 +18,12 @@ final class SearchRepositoryInteractor {
     private let presenter: SearchRepositoryPresenting
     private var repository: Repository?
     private var disposeBag: DisposeBag = DisposeBag()
-    private lazy var searchRepository: SearchRepositoring = {
-        return SearchRepository()
-    }()
+    private var searchRepository: SearchRepositoring
 
-    init(service: RepositoryServicing, presenter: SearchRepositoryPresenting) {
+    init(service: RepositoryServicing, presenter: SearchRepositoryPresenting, searchRepository: SearchRepositoring) {
         self.service = service
         self.presenter = presenter
+        self.searchRepository = searchRepository
     }
 }
 
@@ -41,16 +40,20 @@ extension SearchRepositoryInteractor:SearchRepositoryInteracting {
             return
         }
 
-        searchRepository.add(new: SearchItem(title: query, date: Date()))
-
-        service.searchRepository(query: query)
-            .map({ $0.toDomain() })
-            .subscribe { (repository) in
-                self.repository = repository
-                self.presenter.list(repository: repository, term: query)
-            } onError: { (error) in
-                self.presenter.onErrorSearchRepository(title: "Ocorreu um erro", message: error.localizedDescription)
-            }
-            .disposed(by: disposeBag)
+        if let searchItem = searchRepository.searchItem(by: query) {
+            self.repository = searchItem.repository
+            self.presenter.list(repository: searchItem.repository, term: query)
+        } else {
+            service.searchRepository(query: query)
+                .map({ $0.toDomain() })
+                .subscribe { (repository) in
+                    self.repository = repository
+                    self.searchRepository.add(new: SearchItem(title: query, date: Date(), repository: repository))
+                    self.presenter.list(repository: repository, term: query)
+                } onError: { (error) in
+                    self.presenter.onErrorSearchRepository(title: "Ocorreu um erro", message: error.localizedDescription)
+                }
+                .disposed(by: disposeBag)
+        }
     }
 }
